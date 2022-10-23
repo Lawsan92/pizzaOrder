@@ -18,3 +18,11 @@ app.listen(process.env.PORT, () => {
 })
 
 app.use(express.json());
+
+app.get('/*', function(req, res) { // <-- add
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})

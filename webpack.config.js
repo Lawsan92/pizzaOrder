@@ -10,6 +10,9 @@ const clientCofig = {
     path: path.join(__dirname, './client/dist'),
     filename: 'bundle.js'
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {

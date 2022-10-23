@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Componenets
+// Components
 import NavBar from './NavBar';
 import Router from './Router';
 

@@ -10,10 +10,10 @@ import Home from './Home';
 const Router = () => {
   return (
   <Routes>
-    <Route path='/' element={<Home/>}/>
-    <Route path='login' element={<Login/>}/>
-    <Route path='/history' element={<History/>}/>
-    <Route path='/checkout' element={<Checkout/>}/>
+    <Route path='/' element={<Home />} />
+    <Route path='login' element={<Login />} />
+    <Route path='/history' element={<History />} />
+    <Route path='/checkout' element={<Checkout />} />
   </Routes>
   );
 }

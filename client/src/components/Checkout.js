@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 const Checkout = () => {
   return (
     <div id='checkout'>
-
+      <NavBar/>
       <h1>Checkout</h1>
     </div>
   );
