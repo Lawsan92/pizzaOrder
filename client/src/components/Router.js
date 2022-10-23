@@ -8,12 +8,14 @@ import History from './History';
 import Home from './Home';
 
 const Router = () => {
+  return (
   <Routes>
-    <Route exact path='/' element={<Home/>}/>
-    <Route path='/login' element={<Login/>}/>
+    <Route path='/' element={<Home/>}/>
+    <Route path='login' element={<Login/>}/>
     <Route path='/history' element={<History/>}/>
     <Route path='/checkout' element={<Checkout/>}/>
   </Routes>
+  );
 }
 
 export default Router;
