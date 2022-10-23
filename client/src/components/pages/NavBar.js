@@ -5,10 +5,10 @@ const NavBar = () => {
   return (
     <div className='nav'>
       <Link to='/' className='site-title'>
-        Site Title
+        Pizza!
       </Link>
       <ul>
-        <li className='active'>
+        <li>
           <Link to='/checkout'>Checkout</Link>
         </li>
         <li>
