@@ -3,7 +3,9 @@ import NavBar from './NavBar';
 const axios = require('axios');
 
 const Checkout = () => {
+
   const [order, updateOrder] = useState({});
+
   useEffect(() => {
     axios({
       method: 'get',
@@ -15,10 +17,10 @@ const Checkout = () => {
       }
     })
     .then((res) => {
-      console.log('res:', res.data);
       updateOrder(res.data);
     });
-  })
+  });
+
   return (
     <div id='checkout'>
       <NavBar/>

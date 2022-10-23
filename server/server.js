@@ -16,7 +16,6 @@ app.get('/backorders', (req, res) => {
       }
     })
     .then((response) => {
-      console.log('axios response data:', response.data);
       res.status(200).send(response.data);
     });
 });
