@@ -2,10 +2,10 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 // Components
-import Login from './Login';
-import Checkout from './Checkout';
-import History from './History';
-import Home from './Home';
+import Login from './pages/Login.js';
+import Checkout from './pages/Checkout.js';
+import History from './pages/History.js';
+import Home from './pages/Home.js';
 
 const Router = () => {
   return (
