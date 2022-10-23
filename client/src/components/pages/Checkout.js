@@ -7,7 +7,7 @@ const Checkout = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: '/test'
+      url: '/backorders'
     })
     .catch((err) => {
       if (err) {
