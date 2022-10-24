@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 
-const Checkout = ({ order, updateOrder }) => {
+const Checkout = ({ order, updateOrder, isReady }) => {
 
   const makeOrder = (option) => {
     console.log('className:', option.className, 'value:', option.value);
@@ -30,7 +30,7 @@ const Checkout = ({ order, updateOrder }) => {
         <h3>Flavor</h3>
         <input type='radio' id='cheese' value='cheese' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
         <label for='cheese'>cheese</label>
-        <input type='radio' id='pep[eroni' value='pepperorni' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <input type='radio' id='pepperoni' value='pepperorni' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
         <label for='pepproni'>pepperoni</label>
         <input type='radio' id='sausage' value='sausage' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
         <label for='sausage'>sausage</label>
@@ -46,7 +46,17 @@ const Checkout = ({ order, updateOrder }) => {
         <input type='radio' id='L' value='L' className='Size' onClick={(event) => {makeOrder(event.target)}}/>
         <label for='L'>L</label>
       </form>
-      <button className='order-button' onClick={() => {let date = new Date(); updateOrder({...order, Timestamp: date.toISOString()}) }}>Order</button>
+      <form>
+        <h3>Table_No</h3>
+        <input type='text' onChange={(e) => {updateOrder({...order, Table_No: Number(e.target.value)})}}></input>
+      </form>
+      <button
+      className='order-button'
+      onClick={() => {
+        let date = new Date();
+        updateOrder({...order, Timestamp: date.toISOString()});
+        isReady(true);
+        }}>Order</button>
     </div>
   );
 };

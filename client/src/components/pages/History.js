@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 const axios = require('axios');
 
-const History = ({ orderHist, getOrderHist }) => {
+const History = ({ orderHist, getOrderHist, updateOrder, order, cancelOrder, cancel, getHistory }) => {
 
   const Options = () => {
     return orderHist.map((order, index) => {
-      // console.log('index:', index, 'order:', order);
       return (
-      <div id='order' key={order.Order_ID}>
+      <div id={`order ${order.Order_ID}`} key={order.Order_ID}>
         <ul>
           <li>Crust: {order.Crust}</li>
           <li>Flavor: {order.Flavor}</li>
@@ -17,30 +16,17 @@ const History = ({ orderHist, getOrderHist }) => {
           <li> Table No: {order.Table_No}</li>
           <li>Timestamp: {order.Timestamp}</li>
         </ul>
+        <button id={order.Order_ID} onClick={(e) => {cancelOrder({...cancel, cancel: true, ID: Number(e.target.id)})}}>Cancel</button>
       </div>
       );
     })
   }
 
-    useEffect(() => {
-    axios({
-      method: 'get',
-      url: '/orders'
-    })
-    .catch((err) => {
-      if (err) {
-        console.log('orderHist err:', err);
-      }
-    })
-    .then((res) => {
-      getOrderHist(res.data);
-    });
-  });
-
   return (
     <div id='history'>
       <NavBar/>
       <h1>History</h1>
+      <button onClick={() => {getHistory()}}>Get Order History</button>
       {Options()}
     </div>
   );

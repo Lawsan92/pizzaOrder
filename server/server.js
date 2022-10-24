@@ -27,8 +27,6 @@ app.get('/orders', (req, res) => {
 });
 
 app.post('/orders', (req, res) => {
-  // res.status(200).send('order up!');
-  // console.log('req.data:', req.body);
   axios({
     method: 'post',
     url: 'https://order-pizza-api.herokuapp.com/api/orders',
@@ -39,7 +37,7 @@ app.post('/orders', (req, res) => {
   })
   .catch((err) => {
     if (err) {
-      console.log('app.get /orders err:', err);
+      console.log('app.post /orders err:', err);
       res.send(err);
     }
   })
@@ -48,6 +46,27 @@ app.post('/orders', (req, res) => {
   });
 });
 
+app.delete(`/orders`, (req, res) => {
+  let cancelURl = `https://order-pizza-api.herokuapp.com/api/orders/${req.body.ID}`;
+  console.log('req:', req.body.ID)
+  axios({
+    method: 'delete',
+    url: cancelURl,
+    // data: {ID: req.body.ID},
+    // headers: {
+    //   Authorization: `Bearer ${token}`
+    // }
+  })
+  .catch((err) => {
+    if (err) {
+      res.send(err);
+    }
+  })
+  .then((response) => {
+    res.status(201).send('Order Cancelled!');
+  });
+
+})
 
 
 app.listen(process.env.PORT, () => {
