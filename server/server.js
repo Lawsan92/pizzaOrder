@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
-
+const token = process.env.access_token;
 const app = express();
 
 // ---Middleware---
@@ -14,11 +14,11 @@ app.get('/test', (req, res) => {
   res.sendStatus(200).send('hello world');
 });
 
-app.get('/backorders', (req, res) => {
+app.get('/orders', (req, res) => {
   axios.get('https://order-pizza-api.herokuapp.com/api/orders')
     .catch((err) => {
       if (err) {
-        console.log('server.js err:', err);
+        console.log('app.get/backorders err:', err);
       }
     })
     .then((response) => {
@@ -27,8 +27,25 @@ app.get('/backorders', (req, res) => {
 });
 
 app.post('/orders', (req, res) => {
-  res.status(200).send('order up!');
-  console.log('req.data:', req.body);
+  // res.status(200).send('order up!');
+  // console.log('req.data:', req.body);
+  axios({
+    method: 'post',
+    url: 'https://order-pizza-api.herokuapp.com/api/orders',
+    data: req.body,
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  .catch((err) => {
+    if (err) {
+      console.log('app.get /orders err:', err);
+      res.send(err);
+    }
+  })
+  .then((response) => {
+    res.status(201).send('Order Up!');
+  });
 });
 
 
@@ -46,8 +63,10 @@ app.get('/*', function(req, res) { // <-- add
 });
 
 /*
-curl -d '{"Crust": "NORMAL", "Flavor": "CHEESE", "Order_ID": 1, "Size": "M", "Table_No": 1, "Timestamp": "2022-09-03T18:21:08.710006"}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
+* curl -d '{"Crust": "NORMAL", "Flavor": "CHEESE", "Order_ID": 1, "Size": "M", "Table_No": 1, "Timestamp": "2022-09-03T18:21:08.710006"}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
 
-curl -d '{}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
+* curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Crust": "NORMAL", "Flavor": "CHEESE", "Order_ID": 1, "Size": "M", "Table_No": 1, "Timestamp": "2022-09-03T18:21:08.710006"}' 'https://order-pizza-api.herokuapp.com/api/orders'
+
+* curl -d '{}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
 }
 */
