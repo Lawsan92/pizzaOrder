@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 const axios = require('axios');
 
-const Checkout = () => {
-
-  const [order, updateOrder] = useState({
-    Crust: '',
-    Flavor: '',
-    Size: '',
-    Timestamp: ''
-  });
+const Checkout = ({ order, updateOrder }) => {
 
 
   // const Options = () => {

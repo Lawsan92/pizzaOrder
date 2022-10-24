@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 
-const Login = () => {
-
-  const [user, getUserCred] = useState({password: '', username: ''});
+const Login = ({ login, getUserCred, user }) => {
 
   return (
     <div id='login'>
@@ -15,7 +13,7 @@ const Login = () => {
         <h3>password</h3>
         <input type='text' onChange={(e) => {getUserCred({...user, password: e.target.value})}}></input>
       </form>
-      <button className='login-button'>Login</button>
+      <button className='login-button' onClick={() => {login (true)}}>Login</button>
     </div>
   );
 }

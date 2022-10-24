@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div id='home'>
       <NavBar/>
-      <h1>Homepage</h1>
+      <h1>Welcome!</h1>
     </div>
   );
 }
