@@ -44,3 +44,11 @@ body {
 .nav li:hover {
   background-color: #777;
 }
+
+.login-button {
+  margin-top: 18.7px;
+}
+
+.order-button {
+  margin-top: 18.7px;
+}
