@@ -53,6 +53,11 @@ body {
   margin-top: 18.7px;
 }
 
+#search-bar {
+  display: flex;
+  align-items: center;
+}
+
 #mag {
   height: 10px;
 }

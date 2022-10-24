@@ -1,27 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
-const axios = require('axios');
 
 const Checkout = ({ order, updateOrder }) => {
-
-
-  // const Options = () => {
-  //   return orders.map((order, index) => {
-  //     console.log('index:', index, 'order:', order);
-  //     return (
-  //     <div id='order'>
-  //       <ul>
-  //         <li>Crust: {order.Crust}</li>
-  //         <li>Flavor: {order.Flavor}</li>
-  //         <li>ID: {order.Order_ID}</li>
-  //         <li>Size: {order.Size}</li>
-  //         <li> Table No: {order.Table_No}</li>
-  //         <li>Timestamp: {order.Timestamp}</li>
-  //       </ul>
-  //     </div>
-  //     );
-  //   })
-  // }
 
   const makeOrder = (option) => {
     console.log('className:', option.className, 'value:', option.value);
@@ -34,25 +14,9 @@ const Checkout = ({ order, updateOrder }) => {
     }
   }
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: '/orders'
-  //   })
-  //   .catch((err) => {
-  //     if (err) {
-  //       console.log('Checkout.js err:', err);
-  //     }
-  //   })
-  //   .then((res) => {
-  //     updateOrder(res.data);
-  //   });
-  // });
-
   return (
     <div id='checkout'>
       <NavBar/>
-      {/* {Options()} */}
       <form>
         <h3>Crust</h3>
         <input type='radio' id='thin' value='THIN' className='Crust' onClick={(event) => {makeOrder(event.target)}}/>

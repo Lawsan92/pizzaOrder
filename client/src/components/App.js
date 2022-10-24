@@ -16,6 +16,7 @@ const App = () => {
     Size: '',
     Timestamp: ''
   });
+  const [orderHist, getOrderHist] = useState([]);
 
 
   return (
@@ -26,6 +27,8 @@ const App = () => {
       user= {user}
       order={order}
       updateOrder={updateOrder}
+      orderHist={orderHist}
+      getOrderHist={getOrderHist}
       />
     </div>
   )

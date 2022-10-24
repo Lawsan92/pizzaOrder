@@ -8,8 +8,8 @@ const NavBar = () => {
         Pizza!
       </Link>
       <div id='search-bar'>
-        <input type='text'/>
-        <button id='search-button' placeholder='search...'>
+        <input type='text' placeholder='search...'/>
+        <button id='search-button'>
           <img id ='mag' src='https://res.cloudinary.com/darp0mj9i/image/upload/v1666116514/samples/magnifying-glass-svgrepo-com_nflk4y.svg'></img>
         </button>
       </div>
