@@ -65,7 +65,7 @@ const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
           // isReady(true);
           setOpenModal(true);
           addToCart(current => [...current, order])
-          }}>Order</button>
+          }}>Add To Cart</button>
         </div>
     </div>
   );

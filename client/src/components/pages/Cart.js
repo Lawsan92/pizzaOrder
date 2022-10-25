@@ -1,6 +1,6 @@
 import React, { useState, updateOrder, order } from 'react';
 import NavBar from './NavBar'
-import Modal from './Modal';
+import CartModal from './CartModal';
 
 const Cart = ({ cart, checkoutCart }) => {
 
@@ -27,6 +27,7 @@ const Cart = ({ cart, checkoutCart }) => {
   return (
     <div id='cart'>
       <NavBar/>
+      {openModal ?  <CartModal closeModal={setOpenModal}/> : <></>}
       {RenderCart()}
       <button className='order-button'
         onClick={() => {
