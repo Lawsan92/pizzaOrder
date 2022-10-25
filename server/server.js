@@ -109,11 +109,3 @@ app.get('/*', function(req, res) { // <-- add
   })
 });
 
-/*
-* curl -d '{"Crust": "NORMAL", "Flavor": "SAUSAGE", "Order_ID": 5, "Size": "M", "Table_No": 1, "Timestamp": "2022-09-03T18:21:08.710006"}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
-
-* curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Crust": "NORMAL", "Flavor": "CHEESE", "Order_ID": 1, "Size": "M", "Table_No": 1, "Timestamp": "2022-09-03T18:21:08.710006"}' 'https://order-pizza-api.herokuapp.com/api/orders'
-
-* curl -d '{}' -H "Content-Type: application/json" -POST "localhost:3000/orders"
-}
-*/
