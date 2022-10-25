@@ -13,7 +13,7 @@ const App = () => {
   const [order, updateOrder] = useState({
     Crust: '',
     Flavor: '',
-    ID: NaN,
+    Order_ID: NaN,
     Size: '',
     Table_No: NaN,
     Timestamp: ''
@@ -100,7 +100,6 @@ const App = () => {
   }
 
   // Get order History
-
   const getHistory = () => {
     axios({
       method: 'get',
@@ -113,7 +112,7 @@ const App = () => {
     })
     .then((res) => {
       getOrderHist(res.data);
-      updateOrder({...order, ID: res.data.length + 1})
+      updateOrder({...order, Order_ID: res.data.length + 1})
     });
   };
 
@@ -129,7 +128,7 @@ const App = () => {
   //   })
   //   .then((res) => {
   //     getOrderHist(res.data);
-  //     // updateOrder({...order, ID: res.data.length + 1})
+  //     // updateOrder({...order, Order_ID: res.data.length + 1})
   //   });
   // });
 

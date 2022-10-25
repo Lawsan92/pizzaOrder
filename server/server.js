@@ -24,8 +24,8 @@ app.post('/auth', (req, res) => {
   })
   .catch((err) => {
     if (err) {
-      console.log('app.post/auth err:', err);
-      res.send(err);
+      console.log('app.post/auth err:', err.response.data);
+      res.send(err.response.data);
     }
   })
   .then((response) => {
@@ -39,7 +39,7 @@ app.get('/orders', (req, res) => {
   axios.get('https://order-pizza-api.herokuapp.com/api/orders')
     .catch((err) => {
       if (err) {
-        console.log('app.get/backorders err:', err);
+        console.log('app.get/backorders err:', err.response.data);
       }
     })
     .then((response) => {
@@ -49,6 +49,7 @@ app.get('/orders', (req, res) => {
 
 // Order Pizza
 app.post('/orders', (req, res) => {
+  console.log('req.body.token:', req.body.token, 'req.body.order:', req.body.order);
   axios({
     method: 'post',
     url: 'https://order-pizza-api.herokuapp.com/api/orders',
@@ -56,13 +57,18 @@ app.post('/orders', (req, res) => {
     headers: {
       Authorization: `Bearer ${req.body.token}`
     }
+    // data: req.body,
+    // headers: {
+    //   Authorization: `Bearer ${token}`
+    // }
   })
   .catch((err) => {
     if (err) {
-      console.log('app.post /orders err:', err);
+      console.log('app.post /orders err:', err.response.data);
     }
   })
   .then((response) => {
+    console.log('Order Up!:', response);
     res.status(201).send('Order Up!');
   });
 });
