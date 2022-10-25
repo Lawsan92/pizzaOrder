@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState, updateOrder, order } from 'react';
 import NavBar from './NavBar'
+import Modal from './Modal';
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, checkoutCart }) => {
 
   let itemNo = 0;
+  const [openModal, setOpenModal] = useState(false);
 
   const RenderCart = () => {
     return cart.map((item) => {
       itemNo ++;
       return (
-        <div id={`order ${item.Order_ID}`}>
+        <div id={`order ${item.Order_ID}`} key={itemNo}>
           <h3>{itemNo}</h3>
           <p>Crust: {item.Crust}</p>
           <p>Flavor: {item.Flavor}</p>
@@ -26,6 +28,11 @@ const Cart = ({ cart }) => {
     <div id='cart'>
       <NavBar/>
       {RenderCart()}
+      <button className='order-button'
+        onClick={() => {
+          checkoutCart(true);
+          setOpenModal(true);
+          }}>Order</button>
     </div>
   );
 };

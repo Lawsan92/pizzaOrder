@@ -62,7 +62,7 @@ const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
         onClick={() => {
           let date = new Date();
           updateOrder({...order, Timestamp: date.toISOString()});
-          isReady(true);
+          // isReady(true);
           setOpenModal(true);
           addToCart(current => [...current, order])
           }}>Order</button>

@@ -24,8 +24,8 @@ const App = () => {
   const [orderID, setID] = useState(0);
 
   // STATE: cart
-
   const [cart, addToCart] = useState([]);
+  const [cartIsReady, checkoutCart] = useState(false);
 
   // Authenticate user (-POST /auth)
   const userLogin = () => {
@@ -76,6 +76,34 @@ const App = () => {
   if (orderReady) {
     sendOrder();
     isReady(false);
+  }
+
+  // Send and order CART (-POST/order)
+  const cartCheckout = () => {
+    for (let item of cart) {
+      axios({
+        method: 'post',
+        url: '/orders',
+        data: {
+          order: item,
+          token: token
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          console.log('sendOrder err:', err);
+        }
+      })
+      .then((res) => {
+      console.log('order:', item);
+      console.log('.then sendOrder:', res);
+      isReady(false);
+      });
+    }
+  };
+
+   if (cartIsReady) {
+    cartCheckout();
   }
 
   // Cancel an Order (-DELETE/orders)
@@ -150,6 +178,7 @@ const App = () => {
       getHistory={getHistory}
       cart={cart}
       addToCart={addToCart}
+      checkoutCart={checkoutCart}
       />
     </div>
   )
