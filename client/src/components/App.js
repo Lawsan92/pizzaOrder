@@ -8,7 +8,7 @@ const App = () => {
   // Login state
   const [user, getUserCred] = useState({password: '', username: ''});
   const [isLoggedIn, login] = useState(false);
-
+  const [token, getToken] = useState('');
   // Order state
   const [order, updateOrder] = useState({
     Crust: '',
@@ -20,54 +20,82 @@ const App = () => {
   });
 
   const [orderReady, isReady] = useState(false);
-
   const [orderHist, getOrderHist] = useState([]);
-  const[cancel, cancelOrder] = useState({ID: NaN, cancel: false});
+  const [cancel, cancelOrder] = useState({ID: NaN, cancel: false});
+
+
+  // Authenticate user
+
+  const userLogin = () => {
+    if (isLoggedIn) {
+      axios({
+        method: 'post',
+        url: '/auth',
+        data: user
+      })
+      .catch((err) => {
+        if (err) {
+          console.log('userLogin  err:', err);
+          res.send(err);
+        }
+      })
+      .then((response) => {
+        console.log('response:', response);
+        getToken(response.data.access_token);
+        login(false);
+      });
+    }
+  }
+  userLogin();
 
   // Send an Order
   const sendOrder = () => {
-    if (orderReady) {
-      console.log('order:', order);
-      axios({
-        method: 'post',
-        url: '/orders',
-        data: order
-      })
-      .catch((err) => {
-        if (err) {
-          console.log('sendOrder err:', err);
-        }
-      })
-      .then((res) => {
-      console.log(res.data);
-      });
-    }
+    axios({
+      method: 'post',
+      url: '/orders',
+      data: {
+        order: order,
+        token: token
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        console.log('sendOrder err:', err);
+      }
+    })
+    .then((res) => {
+    console.log('order:', order);
+    console.log('.then sendOrder:', res);
+    isReady(false);
+    });
   };
 
-  sendOrder();
+  if (orderReady) {
+    sendOrder();
+  }
 
-  // Cancel and Order
+  // Cancel an Order
   const sendCancellation = () => {
-    if (cancel.cancel) {
-      axios({
-        method: 'delete',
-        url: '/orders',
-        data: {
-          ID: cancel.ID
-        }
-      })
-      .catch((err) => {
-        if (err) {
-          console.log('Cancel err:', err);
-        }
-      })
-      .then((res) => {
-      console.log('cancel RES:', res);
-      });
-    }
+    axios({
+      method: 'delete',
+      url: '/orders',
+      data: {
+        ID: cancel.ID
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        console.log('Cancel err:', err);
+      }
+    })
+    .then((res) => {
+    console.log('cancel RES:', res);
+    });
   };
 
-  sendCancellation();
+  if (cancel.cancel) {
+    sendCancellation();
+  }
 
   // Get order History
 
@@ -83,7 +111,7 @@ const App = () => {
     })
     .then((res) => {
       getOrderHist(res.data);
-      // updateOrder({...order, ID: res.data.length + 1})
+      updateOrder({...order, ID: res.data.length + 1})
     });
   };
 

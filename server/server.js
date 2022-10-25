@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
-const token = process.env.access_token;
+const [token, getTokenObj] = [process.env.access_token, JSON.parse(process.env.getTokenObj)];
+console.log('getTokenObj:', getTokenObj);
 const app = express();
 
 // ---Middleware---
@@ -14,6 +15,26 @@ app.get('/test', (req, res) => {
   res.sendStatus(200).send('hello world');
 });
 
+// authernticate user
+app.post('/auth', (req, res) => {
+  axios({
+    method: 'post',
+    url: 'https://order-pizza-api.herokuapp.com/api/auth',
+    data: getTokenObj
+  })
+  .catch((err) => {
+    if (err) {
+      console.log('app.post/auth err:', err);
+      res.send(err);
+    }
+  })
+  .then((response) => {
+    res.status(201).send(response.data);
+    console.log('user authenticated!');
+  });
+})
+
+// Get a list of pizza orders
 app.get('/orders', (req, res) => {
   axios.get('https://order-pizza-api.herokuapp.com/api/orders')
     .catch((err) => {
@@ -26,13 +47,14 @@ app.get('/orders', (req, res) => {
     });
 });
 
+// Order Pizza
 app.post('/orders', (req, res) => {
   axios({
     method: 'post',
     url: 'https://order-pizza-api.herokuapp.com/api/orders',
-    data: req.body,
+    data: req.body.order,
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${req.body.token}`
     }
   })
   .catch((err) => {
@@ -46,6 +68,7 @@ app.post('/orders', (req, res) => {
   });
 });
 
+// Cancel Order
 app.delete(`/orders`, (req, res) => {
   let cancelURl = `https://order-pizza-api.herokuapp.com/api/orders/${req.body.ID}`;
   console.log('req:', req.body.ID)
@@ -59,6 +82,7 @@ app.delete(`/orders`, (req, res) => {
   })
   .catch((err) => {
     if (err) {
+      console.log('(app.delete) ERR:', err);
       res.send(err);
     }
   })
@@ -73,6 +97,7 @@ app.listen(process.env.PORT, () => {
   console.log(`listening to port: ${process.env.PORT}`)
 });
 
+// redirect all server requests to bundles.js for client-side routing
 app.get('/*', function(req, res) { // <-- add
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), (err) => {
     if (err) {

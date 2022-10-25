@@ -20,31 +20,33 @@ const Checkout = ({ order, updateOrder, isReady }) => {
       <form>
         <h3>Crust</h3>
         <input type='radio' id='thin' value='THIN' className='Crust' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='thin'>thin</label>
+        <label htmlFor='thin'>thin</label>
         <input type='radio' id='normal' value='NORMAL' className='Crust' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='thick'>normal</label>
+        <label htmlFor='thick'>normal</label>
         <input type='radio' id='thick' value='THICK'  className='Crust'onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='thick'>thick</label>
+        <label htmlFor='thick'>thick</label>
       </form>
       <form>
         <h3>Flavor</h3>
-        <input type='radio' id='cheese' value='cheese' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='cheese'>cheese</label>
-        <input type='radio' id='pepperoni' value='pepperorni' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='pepproni'>pepperoni</label>
-        <input type='radio' id='sausage' value='sausage' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='sausage'>sausage</label>
-        <input type='radio' id='chicken-fajita' value='chicken-fajita' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='chicken-fajita'>chicken-fajita</label>
+        <input type='radio' id='cheese' value='CHEESE' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <label htmlFor='cheese'>cheese</label>
+        <input type='radio' id='pepperoni' value='PEPPERONI' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <label htmlFor='pepproni'>pepperoni</label>
+        <input type='radio' id='sausage' value='SAUSAGE' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <label htmlFor='sausage'>sausage</label>
+        <input type='radio' id='chicken-fajita' value='CHICKEN-FAJITA' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <label htmlFor='chicken-fajita'>chicken-fajita</label>
+        <input type='radio' id='veggie' value='VEGGIE' className='Flavor' onClick={(event) => {makeOrder(event.target)}}/>
+        <label htmlFor='veggie'>veggie</label>
       </form>
       <form>
         <h3>Size</h3>
         <input type='radio' id='S' value='S' className='Size' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='S'>S</label>
+        <label htmlFor='S'>S</label>
         <input type='radio' id='M' value='M' className='Size' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='M'>M</label>
+        <label htmlFor='M'>M</label>
         <input type='radio' id='L' value='L' className='Size' onClick={(event) => {makeOrder(event.target)}}/>
-        <label for='L'>L</label>
+        <label htmlFor='L'>L</label>
       </form>
       <form>
         <h3>Table_No</h3>
