@@ -18,6 +18,9 @@ const NavBar = () => {
           <Link to='/checkout'>Checkout</Link>
         </li>
         <li>
+          <Link to='/cart'>Cart</Link>
+        </li>
+        <li>
           <Link to='/history'>Your Orders</Link>
         </li>
         <li>

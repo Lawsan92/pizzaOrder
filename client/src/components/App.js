@@ -23,6 +23,10 @@ const App = () => {
   const [cancel, cancelOrder] = useState({ID: NaN, cancel: false});
   const [orderID, setID] = useState(0);
 
+  // STATE: cart
+
+  const [cart, addToCart] = useState([]);
+
   // Authenticate user (-POST /auth)
   const userLogin = () => {
     if (isLoggedIn) {
@@ -144,6 +148,8 @@ const App = () => {
       cancel={cancel}
       isReady={isReady}
       getHistory={getHistory}
+      cart={cart}
+      addToCart={addToCart}
       />
     </div>
   )

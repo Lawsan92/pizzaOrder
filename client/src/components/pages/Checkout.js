@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import Modal from './Modal';
 
-const Checkout = ({ order, updateOrder, isReady }) => {
+const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
 
   const [openModal, setOpenModal] = useState(false);
+  // const [orderForm, fillOrder] = useState({});
 
   const makeOrder = (option) => {
     console.log('className:', option.className, 'value:', option.value);
@@ -63,6 +64,7 @@ const Checkout = ({ order, updateOrder, isReady }) => {
           updateOrder({...order, Timestamp: date.toISOString()});
           isReady(true);
           setOpenModal(true);
+          addToCart(current => [...current, order])
           }}>Order</button>
         </div>
     </div>

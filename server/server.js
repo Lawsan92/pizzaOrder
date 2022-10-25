@@ -1,10 +1,11 @@
-const express = require('express');
 const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
+const express = require('express');
+const app = express();
 const [token, getTokenObj] = [process.env.access_token, JSON.parse(process.env.getTokenObj)];
 console.log('getTokenObj:', getTokenObj);
-const app = express();
+
 
 // ---Middleware---
 app.use(express.json());
