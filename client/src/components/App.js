@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 const axios = require('axios');
-// Components
 import Router from './Router';
 
 const App = () => {
 
-  // Login state
+    // STATE: login
   const [user, getUserCred] = useState({password: '', username: ''});
   const [isLoggedIn, login] = useState(false);
   const [token, getToken] = useState('');
-  // Order state
+
+    // STATE: orders
   const [order, updateOrder] = useState({
     Crust: '',
     Flavor: '',
@@ -18,14 +18,12 @@ const App = () => {
     Table_No: NaN,
     Timestamp: ''
   });
-
   const [orderReady, isReady] = useState(false);
   const [orderHist, getOrderHist] = useState([]);
   const [cancel, cancelOrder] = useState({ID: NaN, cancel: false});
+  const [orderID, setID] = useState(0);
 
-
-  // Authenticate user
-
+  // Authenticate user (-POST /auth)
   const userLogin = () => {
     if (isLoggedIn) {
       axios({
@@ -40,6 +38,7 @@ const App = () => {
         }
       })
       .then((response) => {
+        console.log('user authenticated!:');
         console.log('response:', response);
         getToken(response.data.access_token);
         login(false);
@@ -48,7 +47,7 @@ const App = () => {
   }
   userLogin();
 
-  // Send an Order
+  // Send an Order (-POST /orders)
   const sendOrder = () => {
     axios({
       method: 'post',
@@ -75,7 +74,7 @@ const App = () => {
     isReady(false);
   }
 
-  // Cancel an Order
+  // Cancel an Order (-DELETE/orders)
   const sendCancellation = () => {
     axios({
       method: 'delete',
@@ -99,7 +98,7 @@ const App = () => {
     sendCancellation();
   }
 
-  // Get order History
+  // Get order History (-GET/orders)
   const getHistory = () => {
     axios({
       method: 'get',
@@ -116,22 +115,20 @@ const App = () => {
     });
   };
 
-  // useEffect(() => {
-  //   axios({
-  //     method: 'get',
-  //     url: '/orders'
-  //   })
-  //   .catch((err) => {
-  //     if (err) {
-  //       console.log('orderHist err:', err);
-  //     }
-  //   })
-  //   .then((res) => {
-  //     getOrderHist(res.data);
-      // updateOrder({...order, Order_ID: res.data.length + 1})
-  //   });
-  // });
-
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: '/orders'
+    })
+    .catch((err) => {
+      if (err) {
+        console.log('orderHist err:', err);
+      }
+    })
+    .then((res) => {
+      updateOrder({...order, Order_ID: res.data.length + 1})
+    });
+  }, [orderID]);
 
   return (
     <div id='app'>

@@ -18,7 +18,7 @@ const Checkout = ({ order, updateOrder, isReady }) => {
   }
 
   return (
-    <div className='checkout'>
+    <div id='checkout'>
       <NavBar/>
       {openModal ?  <Modal closeModal={setOpenModal}/> : <></>}
       <div className='checkout-form'>

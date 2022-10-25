@@ -2,7 +2,7 @@ import React from 'react';
 
 const Modal = ({ closeModal }) => {
   return (
-    <div id='order-modal'>
+    <div className='order-modal'>
       <div className='modal-background'>
         <div className='modal-container'>
           <button onClick={() => {closeModal(false)}}>X</button>
