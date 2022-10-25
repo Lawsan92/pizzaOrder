@@ -72,6 +72,7 @@ const App = () => {
 
   if (orderReady) {
     sendOrder();
+    isReady(false);
   }
 
   // Cancel an Order
@@ -89,6 +90,7 @@ const App = () => {
       }
     })
     .then((res) => {
+    cancelOrder({...cancel, cancel: false});
     console.log('cancel RES:', res);
     });
   };

@@ -60,7 +60,6 @@ app.post('/orders', (req, res) => {
   .catch((err) => {
     if (err) {
       console.log('app.post /orders err:', err);
-      res.send(err);
     }
   })
   .then((response) => {
@@ -83,14 +82,12 @@ app.delete(`/orders`, (req, res) => {
   .catch((err) => {
     if (err) {
       console.log('(app.delete) ERR:', err);
-      res.send(err);
     }
   })
   .then((response) => {
     res.status(201).send('Order Cancelled!');
   });
-
-})
+});
 
 
 app.listen(process.env.PORT, () => {
