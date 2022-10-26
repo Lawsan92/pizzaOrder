@@ -85,4 +85,8 @@ needs:
 
  <img src= 'https://res.cloudinary.com/darp0mj9i/image/upload/v1666826908/samples/Screen_Shot_2022-10-26_at_18.28.24_g9ipbg.jpg'/>
 
-  <p>You shoul now see your orders populate the history page</p>
+  <p>You should now see your orders populate the history page</p>
+
+  <p>To delete an order simply press cancel, then push get order history to refresh the histroy</p>
+
+  ### To reset everything, simply refresh the page
