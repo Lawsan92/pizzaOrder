@@ -38,13 +38,16 @@ code .
   ```
 
   ### write the following variables in your .env file
-  ```sh
+
+  ```
     PORT = <your port number>
     getTokenObj = <JSON object you'll get in the next step>
   ```
+  ### click on this link, on the page you should see a json object with a 'password' and 'username' prop key, copy that object and set it as the value of the getTokenObj property in your .env file
+  <a hrf='https://order-pizza-api.herokuapp.com/api/ui/#!/Auth/auth_login'>
 
 ## To get server running
-```sh
+```
 npm run server
 ```
 
