@@ -12,9 +12,9 @@ const NavBar = ({ user, token }) => {
       );
     } else {
       return (
-      <div>
+      <a>
         Welcome Back {user.username}
-      </div>
+      </a>
       )
     }
   };

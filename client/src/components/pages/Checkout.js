@@ -65,19 +65,14 @@ const Checkout = ({ order, updateOrder, isReady, addToCart, cart, user, token })
         </form>
         <button className='order-button'
         onClick={() => {
-          // if (cart.length) {
-          //   console.log('ID:', (cart[cart.length -1].Order_ID + 1));
-          //   let date = new Date();
-          //   updateOrder({...order, Timestamp: date.toISOString()});
-          //   updateOrder({...order, Order_ID:(cart[cart.length -1].Order_ID) + 1})
-          //   setOpenModal(true);
-          //   addToCart(current => [...current, order])
-          // } else {
+          if (token === '') {
+            alert('Log in to place an order')
+          } else {
             let date = new Date();
             updateOrder({...order, Timestamp: date.toISOString()});
             setOpenModal(true);
             addToCart(current => [...current, order])
-          //}
+          }
           }}>Add To Cart</button>
         </div>
     </div>

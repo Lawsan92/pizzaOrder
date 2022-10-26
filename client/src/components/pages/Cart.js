@@ -31,8 +31,12 @@ const Cart = ({ cart, checkoutCart, user, token }) => {
       {RenderCart()}
       <button className='order-button'
         onClick={() => {
-          checkoutCart(true);
-          setOpenModal(true);
+          if (cart.length) {
+            checkoutCart(true);
+            setOpenModal(true);
+          } else {
+            alert('Cart is Empty')
+          }
           }}>Order</button>
     </div>
   );

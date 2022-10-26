@@ -5,7 +5,9 @@ const Home = ({ user, token }) => {
   return (
     <div id='home'>
       <NavBar user={user} token={token}/>
-      <h1>Welcome!</h1>
+      <div id='home-main'>
+        <img src='https://res.cloudinary.com/darp0mj9i/image/upload/v1666815188/samples/pizza_tlauzy.jpg'/>
+      </div>
     </div>
   );
 }
