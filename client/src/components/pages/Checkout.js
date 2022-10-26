@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import Modal from './Modal';
 
-const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
+const Checkout = ({ order, updateOrder, isReady, addToCart, cart, user, token }) => {
 
   const [openModal, setOpenModal] = useState(false);
-  // const [orderForm, fillOrder] = useState({});
 
   const makeOrder = (option) => {
     console.log('className:', option.className, 'value:', option.value);
@@ -20,7 +19,7 @@ const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
 
   return (
     <div id='checkout'>
-      <NavBar/>
+      <NavBar user={user} token={token}/>
       {openModal ?  <Modal closeModal={setOpenModal}/> : <></>}
       <div className='checkout-form'>
         <form className>
@@ -58,13 +57,27 @@ const Checkout = ({ order, updateOrder, isReady, addToCart }) => {
           <h3>Table_No</h3>
           <input type='text' onChange={(e) => {updateOrder({...order, Table_No: Number(e.target.value)})}}></input>
         </form>
+        <form>
+          <button onClick={(e) => {
+            e.preventDefault();
+            cart.length ? updateOrder({...order, Order_ID:(cart[cart.length -1].Order_ID) + 1}) : console.log('cart empty')
+            }}>Order_ID</button>
+        </form>
         <button className='order-button'
         onClick={() => {
-          let date = new Date();
-          updateOrder({...order, Timestamp: date.toISOString()});
-          // isReady(true);
-          setOpenModal(true);
-          addToCart(current => [...current, order])
+          // if (cart.length) {
+          //   console.log('ID:', (cart[cart.length -1].Order_ID + 1));
+          //   let date = new Date();
+          //   updateOrder({...order, Timestamp: date.toISOString()});
+          //   updateOrder({...order, Order_ID:(cart[cart.length -1].Order_ID) + 1})
+          //   setOpenModal(true);
+          //   addToCart(current => [...current, order])
+          // } else {
+            let date = new Date();
+            updateOrder({...order, Timestamp: date.toISOString()});
+            setOpenModal(true);
+            addToCart(current => [...current, order])
+          //}
           }}>Add To Cart</button>
         </div>
     </div>

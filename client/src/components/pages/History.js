@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 const axios = require('axios');
 
-const History = ({ orderHist, getOrderHist, updateOrder, order, cancelOrder, cancel, getHistory }) => {
+const History = ({ orderHist, getOrderHist, updateOrder, order, cancelOrder, cancel, getHistory, user, token }) => {
 
   const Options = () => {
     return orderHist.map((order, index) => {
@@ -24,7 +24,7 @@ const History = ({ orderHist, getOrderHist, updateOrder, order, cancelOrder, can
 
   return (
     <div id='history'>
-      <NavBar/>
+      <NavBar user={user} token={token}/>
       <h1>History</h1>
       <button onClick={() => {getHistory()}}>Get Order History</button>
       {Options()}

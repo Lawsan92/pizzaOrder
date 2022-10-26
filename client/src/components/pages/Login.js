@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 
-const Login = ({ login, getUserCred, user }) => {
+const Login = ({ login, getUserCred, user, token }) => {
 
   return (
     <div id='login'>
-      <NavBar/>
+      <NavBar user={user} token={token}/>
       <h2>LOGIN</h2>
       <form className='login-form'>
         <h3>username</h3>

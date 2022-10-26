@@ -1,7 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ user, token }) => {
+
+  const Login = () => {
+    if (token === '') {
+      return (
+        <li>
+          <Link to='/login'>Login</Link>
+        </li>
+      );
+    } else {
+      return (
+      <div>
+        Welcome Back {user.username}
+      </div>
+      )
+    }
+  };
+
   return (
     <div className='nav'>
       <Link to='/' className='site-title'>
@@ -23,9 +40,7 @@ const NavBar = () => {
         <li>
           <Link to='/history'>Your Orders</Link>
         </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
+        {Login()}
       </ul>
     </div>
   )

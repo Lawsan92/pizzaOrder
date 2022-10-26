@@ -2,7 +2,7 @@ import React, { useState, updateOrder, order } from 'react';
 import NavBar from './NavBar'
 import CartModal from './CartModal';
 
-const Cart = ({ cart, checkoutCart }) => {
+const Cart = ({ cart, checkoutCart, user, token }) => {
 
   let itemNo = 0;
   const [openModal, setOpenModal] = useState(false);
@@ -26,7 +26,7 @@ const Cart = ({ cart, checkoutCart }) => {
 
   return (
     <div id='cart'>
-      <NavBar/>
+      <NavBar user={user} token={token}/>
       {openModal ?  <CartModal closeModal={setOpenModal}/> : <></>}
       {RenderCart()}
       <button className='order-button'

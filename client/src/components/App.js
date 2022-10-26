@@ -158,7 +158,9 @@ const App = () => {
       }
     })
     .then((res) => {
-      updateOrder({...order, Order_ID: res.data.length + 1})
+      if (!cart.length) {
+        updateOrder({...order, Order_ID: res.data.length + 1});
+      }
     });
   }, [orderID]);
 
@@ -179,6 +181,8 @@ const App = () => {
       cart={cart}
       addToCart={addToCart}
       checkoutCart={checkoutCart}
+      user={user}
+      token={token}
       />
     </div>
   )
