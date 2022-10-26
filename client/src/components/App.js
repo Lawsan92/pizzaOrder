@@ -97,6 +97,7 @@ const App = () => {
       .then((res) => {
       console.log('order:', item);
       console.log('.then sendOrder:', res);
+      addToCart([]);
       isReady(false);
       });
     }
@@ -160,9 +161,11 @@ const App = () => {
     .then((res) => {
       if (!cart.length) {
         updateOrder({...order, Order_ID: res.data.length + 1});
+      } else {
+        updateOrder({...order, Order_ID: cart[cart.length - 1].Order_ID + 1});
       }
     });
-  }, [orderID]);
+  }, [order.orderID]);
 
   return (
     <div id='app'>

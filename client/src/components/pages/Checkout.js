@@ -58,18 +58,21 @@ const Checkout = ({ order, updateOrder, isReady, addToCart, cart, user, token })
           <input type='text' onChange={(e) => {updateOrder({...order, Table_No: Number(e.target.value)})}}></input>
         </form>
         <form>
-          <button onClick={(e) => {
+          <h3>Grab your ticket</h3>
+          <button  className='orderID-button' onClick={(e) => {
             e.preventDefault();
             cart.length ? updateOrder({...order, Order_ID:(cart[cart.length -1].Order_ID) + 1}) : console.log('cart empty')
             }}>Order_ID</button>
         </form>
         <button className='order-button'
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           if (token === '') {
             alert('Log in to place an order')
           } else {
             let date = new Date();
-            updateOrder({...order, Timestamp: date.toISOString()});
+            updateOrder({...order, Timestamp: date.toISOString()})
+            console.log('order.Timestamp:', order.Timestamp)
             setOpenModal(true);
             addToCart(current => [...current, order])
           }

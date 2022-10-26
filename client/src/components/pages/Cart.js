@@ -11,7 +11,7 @@ const Cart = ({ cart, checkoutCart, user, token }) => {
     return cart.map((item) => {
       itemNo ++;
       return (
-        <div id={`order ${item.Order_ID}`} key={itemNo}>
+        <div id={'cart-item'} key={`order ${item.Order_ID}`}>
           <h3>{itemNo}</h3>
           <p>Crust: {item.Crust}</p>
           <p>Flavor: {item.Flavor}</p>
@@ -28,7 +28,9 @@ const Cart = ({ cart, checkoutCart, user, token }) => {
     <div id='cart'>
       <NavBar user={user} token={token}/>
       {openModal ?  <CartModal closeModal={setOpenModal}/> : <></>}
+      <div id='cart-body'>
       {RenderCart()}
+      </div>
       <button className='order-button'
         onClick={() => {
           if (cart.length) {
