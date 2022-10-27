@@ -42,9 +42,10 @@ code .
     PORT = <your port number>
     getTokenObj = <JSON object you'll get in the next step>
   ```
-  ### click on this link, on the page you should see a json object with a 'password' and 'username' prop key, copy that object and set it as the value of the getTokenObj property in your .env file
-  https://order-pizza-api.herokuapp.com/api/ui/#!/Auth/auth_login
-
+<p>Set this json object as the value of the getTokeObj variable</p>
+  ```
+  { "password": "test", "username": "test"}
+  ```
 
 ## 3- Run the app && Login
 
