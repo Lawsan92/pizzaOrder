@@ -90,3 +90,19 @@ needs:
   <p>To delete an order simply press cancel, then push get order history to refresh the histroy</p>
 
   ### To reset everything, simply refresh the page
+
+## 5-Run app in Docker container (optional)
+
+  ### run the following commands in your shell
+
+  ```sh
+  Docker build --tag pizzaorder .
+  ```
+
+  <p>This will copy all contents of the app into a Docker image</p>
+
+  ```sh
+  Docker run --publish 3000:3000 pizzaorder
+  ```
+
+  <p>This will build a container and run the app in the container on your local server using port 3000 </p>
