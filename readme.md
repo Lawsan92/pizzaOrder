@@ -43,6 +43,7 @@ code .
     getTokenObj = <JSON object you'll get in the next step>
   ```
 <p>Set this json object as the value of the getTokeObj variable</p>
+
   ```
   { "password": "test", "username": "test"}
   ```
