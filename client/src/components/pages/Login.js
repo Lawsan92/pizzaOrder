@@ -33,7 +33,6 @@ const Login = ({ login, getUserCred, user, token }) => {
          a special character: ${chars}
       `);
     }
-    login (true)
   }
 
   return (
