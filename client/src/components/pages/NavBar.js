@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const NavBar = ({ user, token }) => {
 
-  const Login = () => {
+  // Authenticate' password
+  const passwordAuth = () => {
     if (token === '') {
       return (
         <li>
@@ -40,7 +41,7 @@ const NavBar = ({ user, token }) => {
         <li>
           <Link to='/history'>Your Orders</Link>
         </li>
-        {Login()}
+        {passwordAuth()}
       </ul>
     </div>
   )

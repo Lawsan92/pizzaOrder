@@ -105,6 +105,7 @@ const App = () => {
 
    if (cartIsReady) {
     cartCheckout();
+    checkoutCart(false);
   }
 
   // Cancel an Order (-DELETE/orders)
